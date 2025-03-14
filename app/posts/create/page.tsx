@@ -42,16 +42,13 @@ export default function NewPost() {
   // Handle form submission
   async function createPost(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-
     createPostMutation.mutate({
       title,
       content,
       authorId: userId as string,
     })
-
     redirect('/')
   }
-
   return (
     <div className="mx-auto max-w-2xl p-4">
       <h1 className="mb-6 text-2xl font-bold">Create New Post</h1>

@@ -4,14 +4,13 @@ import { trpc } from '@/app/_trpc/client'
 import { use } from 'react'
 
 export default function Post({ params }: { params: Promise<{ id: string }> }) {
-  // Params are wrapped in a promise, so use React's `use()` hook to unwrap the params
-  const unwrappedParams = use(params)
-  const { id } = unwrappedParams
+  // Params are wrapped in a promise, so we need to unwrap them using React's `use()` hook
+  const { id } = use(params)
   // Use the `getPost` query from the TRPC client
   const { data: post, isLoading } = trpc.getPost.useQuery({ id })
 
   return (
-    <div className="flex min-h-screen flex-col max-w-2xl mx-auto mt-8">
+    <div className="mx-auto mt-8 flex min-h-screen max-w-2xl flex-col">
       {isLoading && <p>Loading...</p>}
       {!isLoading && !post && <p>No post found.</p>}
       {!isLoading && post && (
