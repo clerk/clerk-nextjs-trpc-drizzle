@@ -3,12 +3,12 @@ import Posts from './components/Posts'
 
 export default function Page() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center -mt-16">
-      <h1 className="text-4xl font-bold mb-8">Posts</h1>
+    <div className="-mt-16 flex min-h-screen flex-col items-center justify-center">
+      <h1 className="mb-8 text-4xl font-bold">Posts</h1>
       <Posts />
       <Link
         href="/posts/create"
-        className="inline-block border-2 border-current text-current px-4 py-2 rounded-lg hover:scale-[0.98] transition-all"
+        className="inline-block rounded-lg border-2 border-current px-4 py-2 text-current transition-all hover:scale-[0.98]"
       >
         Create New Post
       </Link>
