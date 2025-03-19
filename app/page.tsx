@@ -8,7 +8,7 @@ export default function Page() {
       <Posts />
       <Link
         href="/posts/create"
-        className="inline-block rounded-lg border-2 border-current px-4 py-2 text-current transition-all hover:scale-[0.98]"
+        className="inline-block rounded-lg border-2 border-current px-4 py-2 text-current transition-all hover:scale-[0.98] mt-8"
       >
         Create New Post
       </Link>
