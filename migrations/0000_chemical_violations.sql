@@ -1,6 +1,6 @@
 CREATE TABLE "posts" (
-	"id" integer PRIMARY KEY NOT NULL,
+	"id" serial PRIMARY KEY NOT NULL,
 	"title" text NOT NULL,
 	"content" text NOT NULL,
-	"author_id" integer NOT NULL
+	"author_id" text NOT NULL
 );

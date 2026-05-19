@@ -58,7 +58,7 @@ git clone https://github.com/clerk/clerk-nextjs-trpc-drizzle
 To run the example locally, you need to:
 
 1. `npm install` the required dependencies.
-1. Copy `env.txt` to `.env` and fill in your Clerk and Neon credentials.
+1. Copy `.env.example` to `.env` and fill in your Clerk and Neon credentials.
 1. `npm run db:generate && npm run db:migrate` (or `npm run db:push`) to set up the database schema.
 1. `npm run dev` to launch the development server.
 1. Select the "Sign in" button in the top-right corner of the app's homepage.
