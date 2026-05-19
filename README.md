@@ -29,7 +29,19 @@
 
 Clerk is a developer-first authentication and user management solution. It provides pre-built React components and hooks for sign-in, sign-up, user profile, and organization management. Clerk is designed to be easy to use and customize, and can be dropped into any React or Next.js application.
 
-This repository demonstrates how to use Clerk to create a tRPC context that uses Clerk's authentication context, so that you can use Clerk's authentication state in your tRPC procedures. For more information, see the [guide in the Clerk Docs](https://clerk.com/docs/references/nextjs/trpc).
+This repository demonstrates how to use Clerk to create a tRPC context that uses Clerk's authentication context, so that you can use Clerk's authentication state in your tRPC procedures. For more information, see the [guide in the Clerk Docs](https://clerk.com/docs/guides/development/trpc).
+
+Stack:
+
+- Next.js 16 (App Router, Turbopack default, `proxy.ts` instead of `middleware.ts`)
+- React 19.2
+- Clerk Core 3 (`@clerk/nextjs` v7) — uses `<Show when="signed-in">` / `<Show when="signed-out">`
+- tRPC v11 + TanStack Query v5
+- Drizzle ORM 0.45 with `@neondatabase/serverless` v1 (HTTP)
+- Zod 4
+- Tailwind CSS v4
+
+Last verified: 2026-05-08.
 
 ## Deploy
 
@@ -45,7 +57,9 @@ git clone https://github.com/clerk/clerk-nextjs-trpc-drizzle
 
 To run the example locally, you need to:
 
-1. `npm install` the required dependencies. You may need to use `--force` to handle dependency issues from the React release candidate.
+1. `npm install` the required dependencies.
+1. Copy `.env.example` to `.env` and fill in your Clerk and Neon credentials.
+1. `npm run db:generate && npm run db:migrate` (or `npm run db:push`) to set up the database schema.
 1. `npm run dev` to launch the development server.
 1. Select the "Sign in" button in the top-right corner of the app's homepage.
 

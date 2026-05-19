@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ClerkProvider, SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import { ClerkProvider, Show, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import TRPCProvider from '@/app/_trpc/Provider'
@@ -30,13 +30,13 @@ export default function RootLayout({
         <html lang="en">
           <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
             <header className="flex justify-end items-center p-4 gap-4 h-16">
-              <SignedOut>
+              <Show when="signed-out">
                 <SignInButton />
                 <SignUpButton />
-              </SignedOut>
-              <SignedIn>
+              </Show>
+              <Show when="signed-in">
                 <UserButton />
-              </SignedIn>
+              </Show>
             </header>
             {children}
           </body>
