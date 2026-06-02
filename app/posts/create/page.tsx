@@ -1,14 +1,15 @@
 'use client'
 
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { SignInButton, useAuth } from '@clerk/nextjs'
 import { trpc } from '@/app/_trpc/client'
 import { useState } from 'react'
 
 export default function NewPost() {
+  const router = useRouter()
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
-  // Use Clerk's `useAuth()` hook to get the user's ID
+  // Use Clerk's `useAuth()` hook to gate rendering
   const { userId, isLoaded } = useAuth()
   // Use the `createPosts` mutation from the TRPC client
   const createPostMutation = trpc.createPosts.useMutation()
@@ -29,7 +30,7 @@ export default function NewPost() {
         <p>You must be signed in to create a post.</p>
         <SignInButton>
           <button
-            type="submit"
+            type="button"
             className="inline-block cursor-pointer rounded-lg border-2 border-current px-4 py-2 text-current transition-all hover:scale-[0.98]"
           >
             Sign in
@@ -42,12 +43,8 @@ export default function NewPost() {
   // Handle form submission
   async function createPost(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    createPostMutation.mutate({
-      title,
-      content,
-      authorId: userId as string,
-    })
-    redirect('/')
+    await createPostMutation.mutateAsync({ title, content })
+    router.push('/')
   }
   return (
     <div className="mx-auto max-w-2xl p-4">

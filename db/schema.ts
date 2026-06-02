@@ -4,5 +4,5 @@ export const posts = pgTable('posts', {
   id: serial().primaryKey(),
   title: text().notNull(),
   content: text().notNull(),
-  authorId: text().notNull(),
+  authorId: text('author_id').notNull(),
 })
